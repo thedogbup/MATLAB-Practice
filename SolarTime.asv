@@ -13,17 +13,18 @@ while(longitude < -180 || longitude > 180)
     longitude = input("Please enter a valid longitude in a range of [-180, 180]: ");
 end
 
-utcO = input("Type the specified UTC offset as a decimal from -12:00 to +14:00 (adding 0.5 for a 30 minute offset): ");
+utcO = input("Type the specified UTC offset in the format +HH:mm or -HH:mm: ");
 
-while(utcO < -12 || utcO > 14)
-    utcO = input("Please enter a valid UTC offset as a decimal from -12:00 to +14:00 (adding 0.5 for a 30 minute offset): ");
+if(utcO > 12)
+    utcO = mod(utcO, 24);
+elseif(utcO < -12)
+    utcO = mod(utcO, 24) - 24;
 end
+UTC = -12:12;
 
 sel = input("Type 0 for the time now or anything else to enter a custom time: ");
 
-if(sel == 0)
-    now = dateTime("now");
-    timeIn = datetime(now.Year,now.Month,now.Day,now.Hour,now.Minute,now.Second,'TimeZone','America/Los_Angeles',...
-    'Format','dd-MMM-yyyy HH:mm:ss Z');
+if(sel == 1)
+    time = datetime("now", "utcO);
 end
 
