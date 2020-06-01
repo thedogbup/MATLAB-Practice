@@ -19,11 +19,27 @@ while(utcO < -12 || utcO > 14)
     utcO = input("Please enter a valid UTC offset as a decimal from -12:00 to +14:00 (adding 0.5 for a 30 minute offset): ");
 end
 
+if(utcO < 0)
+        tzone = "-";
+    else
+        tzone = "+";
+end
+if(abs(utcO) < 10)
+    tzone = tzone + '0';
+end
+tzone = tzone + floor(abs(utcO)) + ':';
+
+if(abs(fix(utcO) - utcO) * 60 < 10)
+    tzone = tzone + '0';
+end
+tzone = tzone + abs(fix(utcO) - utcO) * 60;
+
 sel = input("Type 0 for the time now or anything else to enter a custom time: ");
 
 if(sel == 0)
-    now = dateTime("now");
-    timeIn = datetime(now.Year,now.Month,now.Day,now.Hour,now.Minute,now.Second,'TimeZone','America/Los_Angeles',...
+    now = datetime("now");    
+    
+    timeIn = datetime(now.Year,now.Month,now.Day,now.Hour,now.Minute,now.Second,'TimeZone',tzone,...
     'Format','dd-MMM-yyyy HH:mm:ss Z');
 end
 
