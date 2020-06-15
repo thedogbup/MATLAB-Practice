@@ -33,23 +33,23 @@ now = datetime("now");
 
 if(sel == 0)
     allIn = datetime(now.Year,now.Month,now.Day,now.Hour,now.Minute,now.Second,'TimeZone',tzone,...
-    'Format','dd-MMM-yyyy HH:mm:ss Z');
+    'Format','dd-MM-yyyy HH:mm:ss Z');
 else
     timeIn = [now.Year,now.Month,now.Day,now.Hour,now.Minute,now.Second];
-    ymd = input('Type 0 for the displayed date now or enter a date (dd-MMM-yyyy) at or after 1972: ');
+    ymd = input('Type 0 for the displayed date now or enter a date (dd-MM-yyyy) at or after 1972: ', 's');
     if(ymd ~= 0)
-        timeIn(0) = ymd(8:12);
-        timeIn(1) = ymd(4:7);
-        timeIn(2) = ymd(1:2);
+        timeIn(1) = str2double(ymd(7:10));
+        timeIn(2) = str2double(ymd(4:5));
+        timeIn(3) = str2double(ymd(1:2));
     end
-    hms = input('Type 0 for the displayed time now or enter a time (HH:mm:ss): ');
+    hms = input('Type 0 for the displayed time now or enter a time (HH:mm:ss): ', 's');
     if(hms ~= 0)
-        timeIn(3) = hms(1:2);
-        timeIn(4) = hms(4:5);
-        timeIn(5) = hms(7:8);
+        timeIn(4) = str2double(hms(1:2));
+        timeIn(5) = str2double(hms(4:5));
+        timeIn(6) = str2double(hms(7:8));
     end
     
-    allIn = datetime(timeIn);
+    allIn = datetime(strcat(string(datetime(timeIn), " ", tzone)), 'InputFormat', 'dd-MM-yyyy HH:mm:ss ZZZZZ');
 end
 
 
