@@ -7,5 +7,7 @@ clear, clc, format compact, close all
 %|____________________________|
 
 in = readtable("Copy of ejscreen.csv");
-T = in(12:29 ,2:10);
+% T = in(12:22 ,3:7);
 figure('Name', 'EJScreen Sample', 'NumberTitle', 'Off', 'Color', 'black')
+y = cell2mat(readcell('Copy of ejscreen.csv', 'Range', [14 4 24 5]));
+title('Area EJ Statistics'); bar(y);
