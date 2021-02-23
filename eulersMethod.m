@@ -14,7 +14,7 @@ function out = eulersMethod(xi, yi, xf, h, deriv)
 	
 	for r = 1:(size(yn, 2) - 1)
 		yn(r + 1) = yn(r) + h * deriv(xn(r), yn(r));
-	endfor
+    end
 	
 	out = [xn; yn];
 end
